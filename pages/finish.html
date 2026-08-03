@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Congratulations on completing PythonLearn! You have mastered Python from beginner to advanced.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Congratulations — PythonLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/finish.css">
+</head>
+<body>
+    <div class="ambient-background" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="PythonLearn Home">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" fill="url(#logo-gradient)"/>
+                    <path d="M16 8c-2.21 0-4 1.79-4 4v2h-2c-2.21 0-4 1.79-4 4s1.79 4 4 4h2v-2c0-2.21 1.79-4 4-4h2v-2c0-2.21-1.79-4-4-4z" fill="#fff" opacity="0.9"/>
+                    <path d="M16 24c2.21 0 4-1.79 4-4v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4h-2v2c0 2.21-1.79 4-4 4h-2v2c0 2.21 1.79 4 4 4z" fill="#fff" opacity="0.9"/>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="2" y1="2" x2="30" y2="30">
+                            <stop offset="0%" stop-color="#3b82f6"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="logo-text">PythonLearn</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="../index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="learn.html" class="nav-link" role="menuitem">Learn</a></li>
+                <li role="none"><a href="editor.html" class="nav-link" role="menuitem">Editor</a></li>
+                <li role="none"><a href="challenge.html" class="nav-link" role="menuitem">Challenges</a></li>
+                <li role="none"><a href="quiz.html" class="nav-link" role="menuitem">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="finish-page" id="finishPage">
+        <div class="finish-container">
+            <div class="finish-badge" aria-hidden="true">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="url(#finish-icon-gradient)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <linearGradient id="finish-icon-gradient" x1="0" y1="0" x2="24" y2="24">
+                            <stop offset="0%" stop-color="#3b82f6"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+
+            <h1 class="finish-title">
+                <span class="gradient-text">Congratulations!</span>
+            </h1>
+            
+            <p class="finish-subtitle">You completed PythonLearn.</p>
+            
+            <div class="finish-stats" id="finishStats">
+                <div class="finish-stat glass-card">
+                    <span class="finish-stat-value" id="statLessons">0</span>
+                    <span class="finish-stat-label">Lessons Completed</span>
+                </div>
+                <div class="finish-stat glass-card">
+                    <span class="finish-stat-value" id="statChallenges">0</span>
+                    <span class="finish-stat-label">Challenges Solved</span>
+                </div>
+                <div class="finish-stat glass-card">
+                    <span class="finish-stat-value" id="statPoints">0</span>
+                    <span class="finish-stat-label">Total Points</span>
+                </div>
+                <div class="finish-stat glass-card">
+                    <span class="finish-stat-value" id="statQuizzes">0</span>
+                    <span class="finish-stat-label">Quizzes Taken</span>
+                </div>
+            </div>
+
+            <div class="finish-message glass-card">
+                <h2 class="message-title">Keep Building.</h2>
+                <p class="message-text">Completing this curriculum is just the beginning. The best way to master Python is to build real projects. Start small, stay consistent, and never stop learning.</p>
+                <p class="message-text">Here are some ideas for your next steps:</p>
+                <ul class="message-list">
+                    <li>Build a personal project that solves a problem you care about</li>
+                    <li>Contribute to open-source Python projects on GitHub</li>
+                    <li>Explore specialized areas like data science, web development, or automation</li>
+                    <li>Teach what you have learned to someone else</li>
+                    <li>Revisit challenges and try to solve them in fewer lines of code</li>
+                </ul>
+            </div>
+
+            <div class="finish-actions">
+                <a href="challenge.html" class="btn btn-primary btn-large">
+                    <span>More Challenges</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4.167 10h11.666m0 0L10 4.167M15.833 10L10 15.833" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="editor.html" class="btn btn-secondary btn-large">
+                    <span>Open Editor</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M10 4.167v11.666m-5.833-5.833h11.666" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="../index.html" class="btn btn-ghost btn-large">
+                    <span>Back to Home</span>
+                </a>
+            </div>
+
+            <p class="finish-creator">Created by <strong>Muhammad Ahmad</strong></p>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo" aria-label="PythonLearn Home">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z" fill="url(#footer-gradient)"/>
+                        <path d="M16 8c-2.21 0-4 1.79-4 4v2h-2c-2.21 0-4 1.79-4 4s1.79 4 4 4h2v-2c0-2.21 1.79-4 4-4h2v-2c0-2.21-1.79-4-4-4z" fill="#fff" opacity="0.9"/>
+                        <path d="M16 24c2.21 0 4-1.79 4-4v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4h-2v2c0 2.21-1.79 4-4 4h-2v2c0 2.21 1.79 4 4 4z" fill="#fff" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="footer-gradient" x1="2" y1="2" x2="30" y2="30">
+                                <stop offset="0%" stop-color="#3b82f6"/>
+                                <stop offset="100%" stop-color="#8b5cf6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="footer-logo-text">PythonLearn</span>
+                </a>
+                <p class="footer-tagline">Master Python through interactive lessons, challenges, and hands-on practice.</p>
+            </div>
+            
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Learn</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="learn.html?level=beginner">Beginner</a></li>
+                        <li><a href="learn.html?level=intermediate">Intermediate</a></li>
+                        <li><a href="learn.html?level=advanced">Advanced</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Practice</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="editor.html">Code Editor</a></li>
+                        <li><a href="challenge.html">Challenges</a></li>
+                        <li><a href="quiz.html">Quizzes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Resources</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python Docs</a></li>
+                        <li><a href="https://peps.python.org/" target="_blank" rel="noopener noreferrer">PEP Index</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 Muhammad Ahmad. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <span class="footer-made">Made with precision and passion</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/finish.js"></script>
+</body>
+</html>

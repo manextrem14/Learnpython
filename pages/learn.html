@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Python with structured interactive lessons from beginner to advanced. Track your progress as you go.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Learn — PythonLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/learn.css">
+</head>
+<body>
+    <div class="ambient-background" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="PythonLearn Home">
+                
+                <span class="logo-text">PythonLearn</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="../index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="learn.html" class="nav-link active" role="menuitem" aria-current="page">Learn</a></li>
+                <li role="none"><a href="editor.html" class="nav-link" role="menuitem">Editor</a></li>
+                <li role="none"><a href="challenge.html" class="nav-link" role="menuitem">Challenges</a></li>
+                <li role="none"><a href="quiz.html" class="nav-link" role="menuitem">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <div class="learn-layout" id="learnLayout">
+        <!-- Sidebar -->
+        <aside class="learn-sidebar" id="learnSidebar" aria-label="Lesson navigation">
+            <div class="sidebar-header glass-card">
+                <div class="level-tabs" role="tablist" aria-label="Select difficulty level">
+                    <button class="level-tab active" data-level="beginner" role="tab" aria-selected="true" id="tab-beginner" aria-controls="panel-beginner">Beginner</button>
+                    <button class="level-tab" data-level="intermediate" role="tab" aria-selected="false" id="tab-intermediate" aria-controls="panel-intermediate">Intermediate</button>
+                    <button class="level-tab" data-level="advanced" role="tab" aria-selected="false" id="tab-advanced" aria-controls="panel-advanced">Advanced</button>
+                </div>
+                <div class="search-box">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <input type="search" class="search-input" data-search placeholder="Search lessons..." aria-label="Search lessons">
+                </div>
+            </div>
+            
+            <div class="lesson-list-container">
+                <div class="progress-summary" id="progressSummary">
+                    <span class="progress-label">Your Progress</span>
+                    <div class="progress-bar-mini" id="progressBarMini"></div>
+                </div>
+                <nav class="lesson-list" id="lessonList" aria-label="Lessons"></nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="learn-main" id="learnMain">
+            <article class="lesson-view" id="lessonView" aria-live="polite">
+                <div class="lesson-empty-state" id="emptyState">
+                    <div class="empty-icon" aria-hidden="true">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h2 class="empty-title">Welcome to PythonLearn</h2>
+                    <p class="empty-desc">Select a lesson from the sidebar to begin your journey. We recommend starting with the Beginner path if you are new to Python.</p>
+                    <button class="btn btn-primary" id="startBeginnerBtn">
+                        <span>Start Beginner Path</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4.167 10h11.666m0 0L10 4.167M15.833 10L10 15.833" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="lesson-content hidden" id="lessonContent">
+                    <header class="lesson-header">
+                        <div class="lesson-meta">
+                            <span class="lesson-level-badge" id="lessonLevelBadge">Beginner</span>
+                            <span class="lesson-duration" id="lessonDuration">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <span id="durationText">15 min</span>
+                            </span>
+                        </div>
+                        <h1 class="lesson-title" id="lessonTitle">Lesson Title</h1>
+                        <p class="lesson-intro" id="lessonIntro">Lesson introduction goes here.</p>
+                        <div class="lesson-actions">
+                            <button class="btn btn-secondary btn-sm" id="markCompleteBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                                <span>Mark as Complete</span>
+                            </button>
+                            <a href="editor.html" class="btn btn-ghost btn-sm" id="openInEditorBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M10 20H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v10M16 18l2 2 4-4"/>
+                                </svg>
+                                <span>Open in Editor</span>
+                            </a>
+                        </div>
+                    </header>
+
+                    <div class="lesson-body">
+                        <section class="lesson-section" aria-labelledby="explanation-heading">
+                            <h2 id="explanation-heading" class="section-heading">
+                                <span class="section-number">01</span>
+                                Explanation
+                            </h2>
+                            <div class="lesson-explanation" id="lessonExplanation"></div>
+                        </section>
+
+                        <section class="lesson-section" aria-labelledby="examples-heading">
+                            <h2 id="examples-heading" class="section-heading">
+                                <span class="section-number">02</span>
+                                Examples
+                            </h2>
+                            <div class="lesson-examples" id="lessonExamples"></div>
+                        </section>
+
+                        <section class="lesson-section" aria-labelledby="tips-heading">
+                            <h2 id="tips-heading" class="section-heading">
+                                <span class="section-number">03</span>
+                                Tips
+                            </h2>
+                            <ul class="lesson-tips" id="lessonTips"></ul>
+                        </section>
+
+                        <section class="lesson-section" aria-labelledby="mistakes-heading">
+                            <h2 id="mistakes-heading" class="section-heading">
+                                <span class="section-number">04</span>
+                                Common Mistakes
+                            </h2>
+                            <div class="lesson-mistakes" id="lessonMistakes"></div>
+                        </section>
+
+                        <section class="lesson-section" aria-labelledby="practice-heading">
+                            <h2 id="practice-heading" class="section-heading">
+                                <span class="section-number">05</span>
+                                Practice
+                            </h2>
+                            <div class="lesson-practice" id="lessonPractice">
+                                <p class="practice-instruction" id="practiceInstruction"></p>
+                                <div class="practice-editor">
+                                    <div class="practice-editor-header">
+                                        <span class="practice-filename">practice.py</span>
+                                        <button class="btn btn-ghost btn-xs" id="resetPracticeBtn">Reset</button>
+                                    </div>
+                                    <textarea class="practice-codearea" id="practiceCode" spellcheck="false" aria-label="Practice code editor"></textarea>
+                                </div>
+                                <div class="practice-actions">
+                                    <button class="btn btn-primary" id="runPracticeBtn">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <polygon points="5 3 19 12 5 21 5 3"/>
+                                        </svg>
+                                        <span>Run Code</span>
+                                    </button>
+                                    <button class="btn btn-secondary" id="checkPracticeBtn">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                            <polyline points="22 4 12 14.01 9 11.01"/>
+                                        </svg>
+                                        <span>Check Solution</span>
+                                    </button>
+                                </div>
+                                <div class="practice-output hidden" id="practiceOutput">
+                                    <div class="output-header">Output</div>
+                                    <pre class="output-body" id="outputBody"></pre>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="lesson-section" aria-labelledby="challenge-heading">
+                            <h2 id="challenge-heading" class="section-heading">
+                                <span class="section-number">06</span>
+                                Challenge
+                            </h2>
+                            <div class="lesson-challenge" id="lessonChallenge">
+                                <p>Test your knowledge with a coding challenge related to this lesson.</p>
+                                <a href="challenge.html" class="btn btn-outline" id="challengeLink">
+                                    <span>Go to Challenge</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                        <path d="M3.333 8h9.334M8 4.667L11.333 8 8 11.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+
+                    <nav class="lesson-nav" aria-label="Lesson navigation">
+                        <button class="lesson-nav-btn prev" id="prevLessonBtn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M15.833 10H4.167M4.167 10L10 15.833M4.167 10L10 4.167" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div class="nav-btn-text">
+                                <span class="nav-btn-label">Previous</span>
+                                <span class="nav-btn-title" id="prevLessonTitle">—</span>
+                            </div>
+                        </button>
+                        <button class="lesson-nav-btn next" id="nextLessonBtn">
+                            <div class="nav-btn-text">
+                                <span class="nav-btn-label">Next</span>
+                                <span class="nav-btn-title" id="nextLessonTitle">—</span>
+                            </div>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M4.167 10h11.666m0 0L10 4.167M15.833 10L10 15.833" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </nav>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo" aria-label="PythonLearn Home">
+                    
+                    <span class="footer-logo-text">PythonLearn</span>
+                </a>
+                <p class="footer-tagline">she leaves me and i see the world before that she is my world</p>
+            </div>
+            
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Learn</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="learn.html?level=beginner">Beginner</a></li>
+                        <li><a href="learn.html?level=intermediate">Intermediate</a></li>
+                        <li><a href="learn.html?level=advanced">Advanced</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Practice</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="editor.html">Code Editor</a></li>
+                        <li><a href="challenge.html">Challenges</a></li>
+                        <li><a href="quiz.html">Quizzes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Resources</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python Docs</a></li>
+                        <li><a href="https://peps.python.org/" target="_blank" rel="noopener noreferrer">PEP Index</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright"> Muhammad Ahmad. </p>
+            <div class="footer-bottom-links">
+                <span class="footer-made">want to buy mangos ?? </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/learn.js"></script>
+</body>
+</html>

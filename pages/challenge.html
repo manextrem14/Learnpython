@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solve interactive Python coding challenges. Test your skills with automatic checking and track your progress.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Challenges — PythonLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/challenge.css">
+</head>
+<body>
+    <div class="ambient-background" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="PythonLearn Home">
+                
+                <span class="logo-text">PythonLearn</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="../index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="learn.html" class="nav-link" role="menuitem">Learn</a></li>
+                <li role="none"><a href="editor.html" class="nav-link" role="menuitem">Editor</a></li>
+                <li role="none"><a href="challenge.html" class="nav-link active" role="menuitem" aria-current="page">Challenges</a></li>
+                <li role="none"><a href="quiz.html" class="nav-link" role="menuitem">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="challenge-page" id="challengePage">
+        <!-- Challenge List View -->
+        <section class="challenge-list-view" id="challengeListView">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-tag">Practice</span>
+                    <h1 class="section-title">Coding <span class="gradient-text">Challenges</span></h1>
+                    <p class="section-description">Apply what you have learned by solving hands-on coding problems. Each challenge includes automatic checking and instant feedback.</p>
+                </div>
+
+                <div class="challenge-filters glass-card">
+                    <div class="filter-group">
+                        <label class="filter-label" for="difficultyFilter">Difficulty</label>
+                        <select class="filter-select" id="difficultyFilter" aria-label="Filter by difficulty">
+                            <option value="all">All Levels</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="statusFilter">Status</label>
+                        <select class="filter-select" id="statusFilter" aria-label="Filter by status">
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    <div class="filter-group filter-search">
+                        <svg class="filter-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <input type="search" class="filter-search-input" id="challengeSearch" placeholder="Search challenges..." aria-label="Search challenges">
+                    </div>
+                </div>
+
+                <div class="challenge-stats-bar" id="challengeStatsBar">
+                    <div class="stat-pill">
+                        <span class="stat-pill-value" id="completedCount">0</span>
+                        <span class="stat-pill-label">Completed</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-pill-value" id="totalPoints">0</span>
+                        <span class="stat-pill-label">Points</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-pill-value" id="pendingCount">0</span>
+                        <span class="stat-pill-label">Remaining</span>
+                    </div>
+                </div>
+
+                <div class="challenge-grid" id="challengeGrid" role="list"></div>
+            </div>
+        </section>
+
+        <!-- Challenge Solve View -->
+        <section class="challenge-solve-view hidden" id="challengeSolveView" aria-live="polite">
+            <div class="solve-layout">
+                <aside class="solve-sidebar">
+                    <button class="back-btn" id="backToListBtn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Back to Challenges</span>
+                    </button>
+
+                    <div class="solve-info glass-card">
+                        <div class="solve-header">
+                            <span class="solve-difficulty" id="solveDifficulty">Easy</span>
+                            <span class="solve-points" id="solvePoints">100 pts</span>
+                        </div>
+                        <h2 class="solve-title" id="solveTitle">Challenge Title</h2>
+                        <div class="solve-instructions" id="solveInstructions"></div>
+
+                        <div class="solve-section">
+                            <h3 class="solve-section-title">Expected Output</h3>
+                            <pre class="solve-expected" id="solveExpected"></pre>
+                        </div>
+
+                        <div class="solve-section">
+                            <h3 class="solve-section-title">Hints</h3>
+                            <div class="hints-list" id="hintsList"></div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="solve-main">
+                    <div class="solve-editor-header">
+                        <span class="solve-filename">solution.py</span>
+                        <div class="solve-editor-actions">
+                            <button class="btn btn-ghost btn-sm" id="resetSolutionBtn">Reset</button>
+                            <button class="btn btn-primary btn-sm" id="runSolutionBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <polygon points="5 3 19 12 5 21 5 3"/>
+                                </svg>
+                                <span>Run</span>
+                            </button>
+                            <button class="btn btn-secondary btn-sm" id="submitSolutionBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                                <span>Submit</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="solve-editor-wrapper">
+                        <div class="solve-line-numbers" id="solveLineNumbers" aria-hidden="true">1</div>
+                        <textarea class="solve-textarea" id="solveTextarea" spellcheck="false" aria-label="Solution code editor"></textarea>
+                    </div>
+
+                    <div class="solve-output-panel" id="solveOutputPanel">
+                        <div class="solve-output-header">
+                            <span>Output</span>
+                            <button class="solve-output-clear" id="clearSolveOutput">Clear</button>
+                        </div>
+                        <pre class="solve-output-body" id="solveOutputBody"></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo" aria-label="PythonLearn Home">
+                    
+                    <span class="footer-logo-text">PythonLearn</span>
+                </a>
+                <p class="footer-tagline">Master Python through interactive lessons, challenges, and hands-on practice.</p>
+            </div>
+            
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Learn</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="learn.html?level=beginner">Beginner</a></li>
+                        <li><a href="learn.html?level=intermediate">Intermediate</a></li>
+                        <li><a href="learn.html?level=advanced">Advanced</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Practice</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="editor.html">Code Editor</a></li>
+                        <li><a href="challenge.html">Challenges</a></li>
+                        <li><a href="quiz.html">Quizzes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Resources</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python Docs</a></li>
+                        <li><a href="https://peps.python.org/" target="_blank" rel="noopener noreferrer">PEP Index</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright"> Muhammad Ahmad. </p>
+            <div class="footer-bottom-links">
+                <span class="footer-made">Wait a minute who are you ?? </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pyodide.js"></script>
+    <script src="../assets/js/challenge.js"></script>
+</body>
+</html>

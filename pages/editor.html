@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Write and run Python code directly in your browser with PythonLearn's built-in editor powered by Pyodide.">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Editor — PythonLearn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/editor.css">
+</head>
+<body>
+    <div class="ambient-background" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo" aria-label="PythonLearn Home">
+                
+                <span class="logo-text">PythonLearn</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="../index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="learn.html" class="nav-link" role="menuitem">Learn</a></li>
+                <li role="none"><a href="editor.html" class="nav-link active" role="menuitem" aria-current="page">Editor</a></li>
+                <li role="none"><a href="challenge.html" class="nav-link" role="menuitem">Challenges</a></li>
+                <li role="none"><a href="quiz.html" class="nav-link" role="menuitem">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="editor-page" id="editorPage">
+        <div class="editor-toolbar glass-card">
+            <div class="toolbar-left">
+                <span class="toolbar-filename">main.py</span>
+                <span class="toolbar-status" id="saveStatus">Saved</span>
+            </div>
+            <div class="toolbar-actions">
+                <button class="btn btn-ghost btn-sm" id="resetBtn" title="Reset code (Ctrl+Shift+R)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                    <span>Reset</span>
+                </button>
+                <button class="btn btn-primary btn-sm" id="runBtn" title="Run code (Ctrl+Enter)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Run</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="editor-workspace">
+            <div class="editor-pane">
+                <div class="editor-wrapper">
+                    <div class="line-numbers" id="lineNumbers" aria-hidden="true">1</div>
+                    <textarea class="editor-textarea" id="codeEditor" spellcheck="false" aria-label="Python code editor" placeholder="# Write your Python code here..."># Welcome to the PythonLearn Editor!
+# Write your code below and click Run to execute it.
+
+name = "PythonLearn"
+version = 3.12
+
+print(f"Welcome to {name}!")
+print(f"Running Python {version} in your browser.")
+
+# Try some math
+print("\\nSome calculations:")
+print("2 + 2 =", 2 + 2)
+print("10 * 5 =", 10 * 5)
+print("2 ** 8 =", 2 ** 8)
+
+# Try a loop
+print("\\nCounting to 5:")
+for i in range(1, 6):
+    print(f"  {i}")
+
+print("\\nHappy coding!")
+</textarea>
+                </div>
+            </div>
+
+            <div class="output-pane">
+                <div class="output-header">
+                    <span class="output-title">Console Output</span>
+                    <div class="output-actions">
+                        <button class="output-action" id="clearOutputBtn" title="Clear output">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="output-body" id="outputBody" role="log" aria-live="polite">
+                    <div class="output-placeholder">Click "Run" to execute your code. Output will appear here.</div>
+                </div>
+                <div class="output-footer">
+                    <div class="output-loader hidden" id="outputLoader">
+                        <div class="spinner"></div>
+                        <span>Running...</span>
+                    </div>
+                    <div class="output-meta" id="outputMeta"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-shortcuts glass-card">
+            <div class="shortcuts-title">Keyboard Shortcuts</div>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">Ctrl</kbd>
+                    <span class="shortcut-plus">+</span>
+                    <kbd class="shortcut-key">Enter</kbd>
+                    <span class="shortcut-desc">Run code</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">Ctrl</kbd>
+                    <span class="shortcut-plus">+</span>
+                    <kbd class="shortcut-key">S</kbd>
+                    <span class="shortcut-desc">Save code</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">Ctrl</kbd>
+                    <span class="shortcut-plus">+</span>
+                    <kbd class="shortcut-key">Shift</kbd>
+                    <span class="shortcut-plus">+</span>
+                    <kbd class="shortcut-key">R</kbd>
+                    <span class="shortcut-desc">Reset code</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd class="shortcut-key">Tab</kbd>
+                    <span class="shortcut-desc">Insert 4 spaces</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="footer-logo" aria-label="PythonLearn Home">
+                    
+                    <span class="footer-logo-text">PythonLearn</span>
+                </a>
+                <p class="footer-tagline">those who have love in there heart never change love even if they have thousand of better options </p>
+            </div>
+            
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Learn</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="learn.html?level=beginner">Beginner</a></li>
+                        <li><a href="learn.html?level=intermediate">Intermediate</a></li>
+                        <li><a href="learn.html?level=advanced">Advanced</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Practice</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="editor.html">Code Editor</a></li>
+                        <li><a href="challenge.html">Challenges</a></li>
+                        <li><a href="quiz.html">Quizzes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-group">
+                    <h4 class="footer-nav-title">Resources</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer">Python Docs</a></li>
+                        <li><a href="https://peps.python.org/" target="_blank" rel="noopener noreferrer">PEP Index</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="copyright">Muhammad Ahmad. </p>
+            <div class="footer-bottom-links">
+                <span class="footer-made">Made with precision and passion</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/pyodide.js"></script>
+    <script src="../assets/js/editor.js"></script>
+</body>
+</html>
