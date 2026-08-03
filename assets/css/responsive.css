@@ -1,0 +1,99 @@
+
+.container-fluid {
+    width: 100%;
+    padding: 0 var(--container-padding);
+}
+
+.container-narrow {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* ─── Visibility Toggles ─── */
+@media (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .show-mobile { display: block !important; }
+    .show-mobile-flex { display: flex !important; }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop { display: none !important; }
+    .show-desktop { display: block !important; }
+    .show-desktop-flex { display: flex !important; }
+}
+
+/* ─── Responsive Typography ─── */
+@media (max-width: 768px) {
+    .text-responsive-xl {
+        font-size: var(--text-2xl);
+    }
+    .text-responsive-lg {
+        font-size: var(--text-lg);
+    }
+}
+
+/* ─── Responsive Grid ─── */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols, 3), 1fr);
+    gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+    .responsive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+/* ─── Responsive Padding ─── */
+@media (max-width: 768px) {
+    .py-responsive {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
+    }
+}
+
+/* ─── Responsive Flex ─── */
+@media (max-width: 768px) {
+    .flex-responsive {
+        flex-direction: column;
+    }
+    .flex-responsive-reverse {
+        flex-direction: column-reverse;
+    }
+}
+
+/* ─── Touch Optimizations ─── */
+@media (pointer: coarse) {
+    .touch-target {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .hover-lift:hover {
+        transform: none;
+    }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .orb {
+        animation: none;
+    }
+}
